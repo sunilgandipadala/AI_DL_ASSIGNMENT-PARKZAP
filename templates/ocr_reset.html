@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block content %}
+  <div class="container text-center">
+    <h1 class="h1 text-center">OCR Detection</h1>
+    <div class="card text-center drag-area">
+        <div class="card-body">
+            <center>
+            <div class="container-fluid">
+                <div class="card" style="width: 50%;">
+                <div class="icon">
+                    <i class="bi-cloud-arrow-up-fill fa-4x"></i>
+                </div>
+                <h3 class="card-title"><header>Drag & Drop to Upload File</header></h3>
+                </div>
+            </div>
+            </center>
+        </div>
+        <p>OR</p>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="card-body">
+                <input type="file" name="Image" value="Image">
+                <button type="submit"  formaction="{% url 'img' %}" class="btn btn-success bu2">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="card-body buttons">
+        <button class="btn btn-danger bu1" onClick="window.location.reload()" formaction="{% url 'reset' %}"><i class="fas fa-redo-alt">  Reset </i></button>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+            <h2 class="card-heading">Extracted Text from the Image</h2>
+            <div class="textfeild">
+                <p>{{text}}</p>
+                
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
